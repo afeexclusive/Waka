@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var count = 0;
 }
 
 <h1>Index</h1>
@@ -12,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                S/No
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -31,8 +35,15 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
+            <td>
+                @{
+                    count++;
+                }
+                @count
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
