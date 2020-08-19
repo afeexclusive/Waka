@@ -1,0 +1,26 @@
+[
+  {
+    "NigerianStatesId": "4cff8e6b-f517-4a28-8d57-928951a31458",
+    "SerialNumber": "03",
+    "Name": "AKwa-Ibom",
+    "Capital": "Uyo"
+  },
+  {
+    "NigerianStatesId": "4cff8e6b-f517-4a28-8d57-928951a31458",
+    "SerialNumber": "04",
+    "Name": "Anambra",
+    "Capital": "Awka"
+  },
+  {
+    "NigerianStatesId": "02f7a8e6-668c-491b-b0b0-ee0869f088f8",
+    "SerialNumber": "05",
+    "Name": "Bauchi",
+    "Capital": "Bauchi"
+  },
+  {
+    "NigerianStatesId": "c4899202-25db-4b40-a05e-ad46c0efa959",
+    "SerialNumber": "02",
+    "Name": "Lagos",
+    "Capital": "Ikeja"
+  }
+]

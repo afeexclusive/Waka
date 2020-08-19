@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "34dcc84c-1436-46bb-a92d-bfa59ce647e8",
+    "Name": "Ministry of Physical Planning and Urban Development",
+    "FullAddress": "Block 15, The Secretariat, Mobolaji Johnson Ave, Ikeja, Lagos",
+    "Latitude": 5678.765,
+    "Longitude": 98.876,
+    "Description": null
+  },
+  {
+    "Id": "9578fb3c-9042-4dde-aefa-821a29c64b3a",
+    "Name": "Afe Teller",
+    "FullAddress": "Block 15, The Secretariat, Mobolaji Johnson Ave, Ikeja, Lagos",
+    "Latitude": 5678.765,
+    "Longitude": 654.876,
+    "Description": null
+  }
+]
