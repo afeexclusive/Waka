@@ -36,8 +36,6 @@ namespace Waka.Controllers
         }
 
         // POST: PublicPlaces/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind("Id,Name,FullAddress,Latitude,Longitude,Description")] PublicPlaces publicPlaces)
@@ -46,96 +44,95 @@ namespace Waka.Controllers
             {
                 publicPlaces.Id = Guid.NewGuid();
                 storage.Post(publicPlaces);
-                //_context.Add(publicPlaces);
-                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(publicPlaces);
         }
 
         // GET: PublicPlaces/Edit/5
-        //public async Task<IActionResult> Edit(Guid? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public  ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var publicPlaces = await _context.PublicPlaces.FindAsync(id);
-        //    if (publicPlaces == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(publicPlaces);
-        //}
+            
+            var publicPlaces = storage.GetAll();
+            var onePlace = publicPlaces.Where(s => s.Id == id).FirstOrDefault();
 
-        //// POST: PublicPlaces/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,FullAddress,Latitude,Longitude,Description")] PublicPlaces publicPlaces)
-        //{
-        //    if (id != publicPlaces.Id)
-        //    {
-        //        return NotFound();
-        //    }
+            if (onePlace == null)
+            {
+                return NotFound();
+            }
+            return View(onePlace);
+        }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(publicPlaces);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!PublicPlacesExists(publicPlaces.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(publicPlaces);
-        //}
+        // POST: PublicPlaces/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Guid id, [Bind("Id,Name,FullAddress,Latitude,Longitude,Description")] PublicPlaces publicPlaces)
+        {
+            if (id != publicPlaces.Id)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+
+                var places = storage.GetAll();
+                var comparePlace = storage.GetAll().Where(c => c.Id == id).FirstOrDefault();
+                var placeToUpdate = places.Where(d => d.Id == id).FirstOrDefault();
+
+                placeToUpdate.FullAddress = string.IsNullOrWhiteSpace(publicPlaces.FullAddress) ? placeToUpdate.FullAddress : publicPlaces.FullAddress;
+                placeToUpdate.Name = string.IsNullOrWhiteSpace(publicPlaces.Name) ? placeToUpdate.Name : publicPlaces.Name;
+                placeToUpdate.Description = string.IsNullOrWhiteSpace(publicPlaces.Description) ? placeToUpdate.Description : publicPlaces.Description;
+               
+
+                storage.Update(placeToUpdate, comparePlace);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+               
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
 
         // GET: PublicPlaces/Delete/5
-    //    public async Task<IActionResult> Delete(Guid? id)
-    //    {
-    //        if (id == null)
-    //        {
-    //            return NotFound();
-    //        }
+        //    public async Task<IActionResult> Delete(Guid? id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-    //        var publicPlaces = await _context.PublicPlaces
-    //            .FirstOrDefaultAsync(m => m.Id == id);
-    //        if (publicPlaces == null)
-    //        {
-    //            return NotFound();
-    //        }
+        //        var publicPlaces = await _context.PublicPlaces
+        //            .FirstOrDefaultAsync(m => m.Id == id);
+        //        if (publicPlaces == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-    //        return View(publicPlaces);
-    //    }
+        //        return View(publicPlaces);
+        //    }
 
-    //    // POST: PublicPlaces/Delete/5
-    //    [HttpPost, ActionName("Delete")]
-    //    [ValidateAntiForgeryToken]
-    //    public async Task<IActionResult> DeleteConfirmed(Guid id)
-    //    {
-    //        var publicPlaces = await _context.PublicPlaces.FindAsync(id);
-    //        _context.PublicPlaces.Remove(publicPlaces);
-    //        await _context.SaveChangesAsync();
-    //        return RedirectToAction(nameof(Index));
-    //    }
+        //    // POST: PublicPlaces/Delete/5
+        //    [HttpPost, ActionName("Delete")]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> DeleteConfirmed(Guid id)
+        //    {
+        //        var publicPlaces = await _context.PublicPlaces.FindAsync(id);
+        //        _context.PublicPlaces.Remove(publicPlaces);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
 
-    //    private bool PublicPlacesExists(Guid id)
-    //    {
-    //        return _context.PublicPlaces.Any(e => e.Id == id);
-    //    }
+        //    private bool PublicPlacesExists(Guid id)
+        //    {
+        //        return _context.PublicPlaces.Any(e => e.Id == id);
+        //    }
     }
 }

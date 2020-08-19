@@ -76,11 +76,11 @@ namespace Waka.Brokers
             return entity;
         }
 
-        public void Update(T stateToUpdate, T compareState)
+        public void Update(T entityToUpdate, T compareEntity)
         {
             var initialJson = File.ReadAllText($"C:\\Projects\\Waka\\Data\\{file}.json");
             List<T> nigerianStates = JsonConvert.DeserializeObject<List<T>>(initialJson);
-            var dbState = JsonConvert.SerializeObject(compareState);
+            var dbState = JsonConvert.SerializeObject(compareEntity);
             List<T> newList = new List<T>();
             foreach (var item in nigerianStates)
             {
@@ -91,11 +91,12 @@ namespace Waka.Brokers
                     newList.Add(item);
                 }
             }
-            newList.Add(stateToUpdate);
+            newList.Add(entityToUpdate);
             var completeJson = JsonConvert.SerializeObject(newList);
             File.WriteAllText($"C:\\Projects\\Waka\\Data\\{file}.json", completeJson);
 
             
         }
+
     }
 }
