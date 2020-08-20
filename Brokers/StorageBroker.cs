@@ -26,7 +26,7 @@ namespace Waka.Brokers
 
         public void Delete(T entity)
         {
-            var initialJson = File.ReadAllText($"C:\\Projects\\Waka\\Data\\{file}.json");
+            var initialJson = File.ReadAllText($"./Data/{file}.json");
 
             List<T> nigerianStates = JsonConvert.DeserializeObject<List<T>>(initialJson);
             var comingEntity = JsonConvert.SerializeObject(entity);
@@ -43,7 +43,7 @@ namespace Waka.Brokers
             }
 
             var completeJson = JsonConvert.SerializeObject(newList);
-            File.WriteAllText($"C:\\Projects\\Waka\\Data\\{file}.json", completeJson);
+            File.WriteAllText($"./Data/{file}.json", completeJson);
         }
 
         public IEnumerable<T> GetAll()
@@ -55,20 +55,20 @@ namespace Waka.Brokers
 
         public T Post(T entity)
         {
-            var initialJson = File.ReadAllText($"C:\\Projects\\Waka\\Data\\{file}.json");
+            var initialJson = File.ReadAllText($"./Data/{file}.json");
             if (initialJson.Length > 15)
             {
                 List<T> publicPlaces = JsonConvert.DeserializeObject<List<T>>(initialJson);
                 publicPlaces.Add(entity);
                 var completeJson = JsonConvert.SerializeObject(publicPlaces);
-                File.WriteAllText($"C:\\Projects\\Waka\\Data\\{file}.json", completeJson);
+                File.WriteAllText($"./Data/{file}.json", completeJson);
             }
             else
             {
                 List<T> freshDb = new List<T>();
                 freshDb.Add(entity);
                 var completeJson = JsonConvert.SerializeObject(freshDb);
-                File.WriteAllText($"C:\\Projects\\Waka\\Data\\{file}.json", completeJson);
+                File.WriteAllText($"./Data/{file}.json", completeJson);
             }
             
            
@@ -78,7 +78,7 @@ namespace Waka.Brokers
 
         public void Update(T entityToUpdate, T compareEntity)
         {
-            var initialJson = File.ReadAllText($"C:\\Projects\\Waka\\Data\\{file}.json");
+            var initialJson = File.ReadAllText($"./Data/{file}.json");
             List<T> nigerianStates = JsonConvert.DeserializeObject<List<T>>(initialJson);
             var dbState = JsonConvert.SerializeObject(compareEntity);
             List<T> newList = new List<T>();
@@ -93,7 +93,7 @@ namespace Waka.Brokers
             }
             newList.Add(entityToUpdate);
             var completeJson = JsonConvert.SerializeObject(newList);
-            File.WriteAllText($"C:\\Projects\\Waka\\Data\\{file}.json", completeJson);
+            File.WriteAllText($"./Data/{file}.json", completeJson);
 
             
         }
