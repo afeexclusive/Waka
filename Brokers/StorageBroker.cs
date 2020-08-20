@@ -48,7 +48,7 @@ namespace Waka.Brokers
 
         public IEnumerable<T> GetAll()
         {
-            var initialJson = File.ReadAllText(".\\Data\\publicplaces.json");
+            var initialJson = File.ReadAllText($"./Data/{file}.json");
             List<T> nigerianStates = JsonConvert.DeserializeObject<List<T>>(initialJson);
             return nigerianStates;
         }
