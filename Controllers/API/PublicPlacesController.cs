@@ -21,11 +21,12 @@ namespace Waka.Controllers
             this.storageBroker = storageBroker;
         }
 
-        [HttpPost]
-        public async Task Post(FindPlace place)
-        {
-            APIHelper aPIHelper = new APIHelper();
-            var address = await aPIHelper.GetFullAddress(place.Place);
-        }
+        [HttpGet]
+        public IEnumerable<PublicPlaces> GetPlaces() => storageBroker.GetAll();
+
+        [HttpGet("{Id}")]
+        public PublicPlaces GetOnePlace(Guid Id) => storageBroker.GetAll().Where(o => o.Id == Id).FirstOrDefault();
+       
+
     }
 }
