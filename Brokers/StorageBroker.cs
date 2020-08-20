@@ -52,7 +52,7 @@ namespace Waka.Brokers
             List<T> nigerianStates = JsonConvert.DeserializeObject<List<T>>(initialJson);
             return nigerianStates;
         }
-C:\Projects\Waka\ViewModels\
+
         public T Post(T entity)
         {
             var initialJson = File.ReadAllText($"C:\\Projects\\Waka\\Data\\{file}.json");
