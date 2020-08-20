@@ -30,7 +30,7 @@ namespace Waka.Services
 
         public async Task<PublicPlacesVM> GetFullAddress(string placeName)
         {
-            var url = $"json?input={placeName}&inputtype=textquery&fields=formatted_address,name,geometry&key=AIzaSyCZoaDRV1zeWwVqppLxkRM8itTSyzP_jj0";
+            var url = $"json?input={placeName}&inputtype=textquery&fields=formatted_address,name,geometry&key=";
 
             try
             {
