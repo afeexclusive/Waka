@@ -41,12 +41,20 @@ namespace Waka.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("UserId,UserName,Email,Password,IsSignedIn")] User user)
         {
+            SignInViewModel signInViewModel = new SignInViewModel()
+            {
+                Email = user.Email,
+                Password = user.Password
+            };
             if (ModelState.IsValid)
             {
                 user.UserId = Guid.NewGuid();
                 user.IsSignedIn = true;
                 storage.Post(user);
+                PersistUser.userId = default;
+                userManager.SignIn(signInViewModel);
                 PersistUser.userId = user.UserId;
+
                 return RedirectToAction("Index", "Home");
             }
             return View(user);
