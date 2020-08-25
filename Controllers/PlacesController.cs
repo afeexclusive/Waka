@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Waka.Brokers;
+using Waka.Managers;
 using Waka.Models;
 
 namespace Waka.Controllers
@@ -43,6 +41,7 @@ namespace Waka.Controllers
             if (ModelState.IsValid)
             {
                 publicPlaces.Id = Guid.NewGuid();
+                publicPlaces.PostedBy = PersistUser.userName;
                 storage.Post(publicPlaces);
                 return RedirectToAction(nameof(Index));
             }
@@ -88,6 +87,7 @@ namespace Waka.Controllers
                 placeToUpdate.FullAddress = string.IsNullOrWhiteSpace(publicPlaces.FullAddress) ? placeToUpdate.FullAddress : publicPlaces.FullAddress;
                 placeToUpdate.Name = string.IsNullOrWhiteSpace(publicPlaces.Name) ? placeToUpdate.Name : publicPlaces.Name;
                 placeToUpdate.Description = string.IsNullOrWhiteSpace(publicPlaces.Description) ? placeToUpdate.Description : publicPlaces.Description;
+                placeToUpdate.PostedBy = PersistUser.userName;
                
 
                 storage.Update(placeToUpdate, comparePlace);

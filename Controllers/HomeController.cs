@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Waka.Managers;
 using Waka.Models;
 
 namespace Waka.Controllers
@@ -20,6 +21,7 @@ namespace Waka.Controllers
 
         public IActionResult Index()
         {
+            ViewData["userId"] = PersistUser.userId;
             return View();
         }
 

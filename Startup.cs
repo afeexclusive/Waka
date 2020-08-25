@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Waka.Brokers;
 using Microsoft.EntityFrameworkCore;
+using Waka.Managers;
+using Waka.Models;
 
 namespace Waka
 {
@@ -27,6 +29,7 @@ namespace Waka
         {
             services.AddControllersWithViews();
             services.AddTransient(typeof(IStorageBroker<>), typeof(StorageBroker<>));
+            services.AddTransient<UserManager>();
 
             //services.AddDbContext<WakaContext>(options =>
             //        options.UseSqlServer(Configuration.GetConnectionString("WakaContext")));

@@ -1,8 +1,59 @@
-﻿@{
+﻿@inject UserManager userManager;
+@{
     ViewData["Title"] = "Home Page";
+    var currentUser = ViewData["userId"];
+    string cUser = "";
+    string cUserName = "";
+    if (currentUser.ToString() != "00000000-0000-0000-0000-000000000000")
+    {
+
+        cUser = currentUser.ToString();
+        cUserName = userManager.CurrentSignedInUser(Guid.Parse(cUser)).Email;
+    }
 }
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+
+                @if (string.IsNullOrWhiteSpace(cUser))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Create">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SignIn">Login</a>
+                    </li>
+                }
+                else if (userManager.UserIsSignedIn(Guid.Parse(cUser)))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Places" asp-action="Index">Places</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Places" asp-action="Create">Create Places</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" >@cUserName</a>
+                    </li>
+                    <li class="nav-item">
+                        <form asp-controller="User" asp-action="SignOut" method="post">
+                            <button class="nav-link btn btn-link" style="width:auto; color:black">Sign Out</button>
+                        </form>
+                    </li>
+
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
 </div>
