@@ -94,9 +94,9 @@ namespace Waka.Brokers
             newList.Add(entityToUpdate);
             var completeJson = JsonConvert.SerializeObject(newList);
             File.WriteAllText($"./Data/{file}.json", completeJson);
-
-            
         }
+
+        
 
     }
 }

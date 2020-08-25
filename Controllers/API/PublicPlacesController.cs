@@ -26,7 +26,24 @@ namespace Waka.Controllers
 
         [HttpGet("{Id}")]
         public PublicPlaces GetOnePlace(Guid Id) => storageBroker.GetAll().Where(o => o.Id == Id).FirstOrDefault();
-       
+
+        [HttpGet]
+        [Route("group")]
+        public IEnumerable<PublicPlaces> GetGroupPlace(string Cat)
+        {
+            List<PublicPlaces> publicPlaces = storageBroker.GetAll().ToList();
+            List<PublicPlaces> selectedPlaces = new List<PublicPlaces>();
+            foreach (var place in publicPlaces)
+            {
+                if (place.Description.ToLower() == Cat.ToLower())
+                {
+                    selectedPlaces.Add(place);
+                }
+            }
+            return selectedPlaces;
+        }
+
+
 
     }
 }
