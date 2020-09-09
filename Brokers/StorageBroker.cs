@@ -71,8 +71,6 @@ namespace Waka.Brokers
                 File.WriteAllText($"./Data/{file}.json", completeJson);
             }
             
-           
-
             return entity;
         }
 
@@ -95,8 +93,6 @@ namespace Waka.Brokers
             var completeJson = JsonConvert.SerializeObject(newList);
             File.WriteAllText($"./Data/{file}.json", completeJson);
         }
-
-        
 
     }
 }

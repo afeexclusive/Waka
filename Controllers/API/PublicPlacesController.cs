@@ -15,10 +15,12 @@ namespace Waka.Controllers
     public class PublicPlacesController: ControllerBase
     {
         private readonly IStorageBroker<PublicPlaces> storageBroker;
+        //private readonly CategoryFetcher categoryFetcher;
 
-        public PublicPlacesController(IStorageBroker<PublicPlaces> storageBroker)
+        public PublicPlacesController(IStorageBroker<PublicPlaces> storageBroker) //CategoryFetcher categoryFetcher
         {
             this.storageBroker = storageBroker;
+            //this.categoryFetcher = categoryFetcher;
         }
 
         [HttpGet]
@@ -43,7 +45,19 @@ namespace Waka.Controllers
             return selectedPlaces;
         }
 
+        [HttpPost]
+        public PublicPlaces PostPlaces(PublicPlaces places) => storageBroker.Post(places);
 
+
+        [HttpGet]
+        [Route("categ")]
+        public IEnumerable<string> PlacesCategories()
+        {
+            var cats = storageBroker.GetAll().Select(p => p.Description).ToList();
+            CategoryFetcher categoryFetcher = new CategoryFetcher();
+            return categoryFetcher.FetchCategory(cats);
+        }
+        
 
     }
 }
