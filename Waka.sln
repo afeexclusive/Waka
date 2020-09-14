@@ -5,7 +5,17 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Waka", "Waka.csproj", "{E1438A2C-844E-4DE4-B9C4-ED3CC799CB42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waka.Connect", "..\Waka.Connect\Waka.Connect.csproj", "{4F4A8548-567E-4ABB-B7A1-7FB6D9DA9496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Waka.Connect", "..\Waka.Connect\Waka.Connect.csproj", "{4F4A8548-567E-4ABB-B7A1-7FB6D9DA9496}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waka.Application", "Waka.Application", "{29843DF3-4611-44C3-9171-0603F45837AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waka.Domain", "Waka.Domain", "{DF88D781-43D2-4510-B116-BA36E72C36C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waka.Infrastructure.Data", "Waka.Infrastructure.Data", "{8DF244D4-859A-4FB2-86ED-AF033226DE25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waka.IoC", "Waka.IoC", "{2669D2F6-8F0C-4155-9105-BC6D10290C6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waka.UI.MVC", "Waka.UI.MVC", "{4811C1A5-03E3-4252-82D0-930E765E8144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +34,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1438A2C-844E-4DE4-B9C4-ED3CC799CB42} = {4811C1A5-03E3-4252-82D0-930E765E8144}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3538765-67F1-45FF-8C49-D3F323AF43DC}
