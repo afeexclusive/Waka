@@ -12,6 +12,7 @@ using Waka.Brokers;
 using Microsoft.EntityFrameworkCore;
 using Waka.Managers;
 using Waka.Models;
+using Waka.InversionOfControl;
 
 namespace Waka
 {
@@ -28,8 +29,9 @@ namespace Waka
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient(typeof(IStorageBroker<>), typeof(StorageBroker<>));
+            //services.AddTransient(typeof(IStorageBroker<>), typeof(StorageBroker<>));
             services.AddTransient<UserManager>();
+            RegisterServices(services);
 
             //services.AddDbContext<WakaContext>(options =>
             //        options.UseSqlServer(Configuration.GetConnectionString("WakaContext")));
@@ -61,6 +63,11 @@ namespace Waka
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
         }
     }
 }

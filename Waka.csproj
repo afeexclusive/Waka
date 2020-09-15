@@ -19,4 +19,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Waka.InversionOfControl\Waka.InversionOfControl.csproj" />
+    <ProjectReference Include="..\Waka.Models\Waka.Models.csproj" />
+    <ProjectReference Include="..\WakaData\WakaData.csproj" />
+  </ItemGroup>
+
 </Project>

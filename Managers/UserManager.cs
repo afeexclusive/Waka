@@ -21,7 +21,6 @@ namespace Waka.Managers
         {
             try
             {
-
                 var users = storage.GetAll();
                 var compareUser = storage.GetAll().Where(c => c.Email == model.Email).FirstOrDefault();
                 var userToUpdate = users.Where(d => d.Email == model.Email).FirstOrDefault();
